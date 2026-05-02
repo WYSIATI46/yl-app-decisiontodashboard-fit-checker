@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg-warm: #f5f2ed;
+  --color-text-ink: #1a1a1a;
+  --color-accent-gray: #e5e5e1;
+  --color-accent-orange: #FF6321;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Abril Fatface", ui-serif, Georgia, serif;
+}
+
+@layer base {
+  :root {
+    --bg-warm: #f5f2ed;
+    --text-ink: #1a1a1a;
+    --accent-gray: #e5e5e1;
+  }
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-warm);
+    color: var(--text-ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  .font-display {
+    font-family: var(--font-display);
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-warm); 
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d1d1cf; 
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b1b1af; 
+  }
+  
+  .editorial-grid {
+    background-image: radial-gradient(#d1d1cf 0.5px, transparent 0.5px);
+    background-size: 24px 24px;
+  }
+}
