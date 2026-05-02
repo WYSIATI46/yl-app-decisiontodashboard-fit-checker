@@ -1,7 +1,3 @@
-import { GoogleGenAI } from "@google/genai";
-
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
 export async function extractDiagnosticFromProse(prose: string) {
   const prompt = `
 You are an expert in behavioral data science and Stephen Few's principles of data visualization. 
@@ -46,16 +42,15 @@ Dashboard Description:
 `;
 
   try {
-    const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: prompt,
-      config: {
-        responseMimeType: "application/json",
-      }
+    const response = await fetch('/api/gemini', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt }),
     });
 
-    if (response.text) {
-      return JSON.parse(response.text);
+    const { result } = await response.json();
+    if (result) {
+      return JSON.parse(result);
     }
     throw new Error("No response from AI");
   } catch (error) {
@@ -99,16 +94,15 @@ Return the result as a JSON object with the following structure:
 `;
 
   try {
-    const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: prompt,
-      config: {
-        responseMimeType: "application/json",
-      }
+    const response = await fetch('/api/gemini', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt }),
     });
 
-    if (response.text) {
-      return JSON.parse(response.text);
+    const { result } = await response.json();
+    if (result) {
+      return JSON.parse(result);
     }
     throw new Error("No response from AI");
   } catch (error) {
